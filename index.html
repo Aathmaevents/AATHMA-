@@ -1758,16 +1758,32 @@
             const thanksTitle = document.getElementById('thanksTitle');
 
             form.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const nameVal = document.getElementById('fname').value || 'Friend';
-                thanksTitle.textContent = 'Thank you, ' + nameVal;
-                panel.classList.add('active');
+               e.preventDefault();
 
-                // Save form submission state to local storage mock to maintain durable feel
-                localStorage.setItem('aathma_last_enquiry', JSON.stringify({
-                    name: nameVal,
-                    date: new Date().toISOString()
-                }));
+               const nameVal  = document.getElementById('fname').value || 'Friend';
+               const phoneVal = document.getElementById('fphone').value || '-';
+               const typeVal  = document.getElementById('ftype').value || '-';
+               const dateVal  = document.getElementById('fdate').value || '-';
+               const msgVal   = document.getElementById('fmsg').value || '-';
+
+             // Build the WhatsApp message
+             const waMessage =
+               `New Event Enquiry - AATHMA Events\n\n` +
+               `Name: ${nameVal}\n` +
+               `Phone: ${phoneVal}\n` +
+               `Event Type: ${typeVal}\n` +
+               `Tentative Date: ${dateVal}\n` +
+               `Message: ${msgVal}`;
+
+            const waNumber = '918078070785'; // your business WhatsApp number
+            const waUrl = `https://wa.me/${waNumber}?text=${encodeURIComponent(waMessage)}`;
+
+            // Open WhatsApp with the pre-filled message
+            window.open(waUrl, '_blank', 'noopener');
+
+            // Show the success panel in the UI as before
+            thanksTitle.textContent = 'Thank you, ' + nameVal;
+            panel.classList.add('active');
             });
 
             resetBtn.addEventListener('click', () => {
