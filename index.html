@@ -391,6 +391,10 @@
             animation: scrollLine 2.2s ease-in-out infinite;
         }
 
+        .eyebrow.no-line::before {
+           display: none;
+        }
+
         @keyframes scrollLine {
             0% {
                 top: -100%;
@@ -1265,7 +1269,7 @@
     <section class="hero" id="top">
         <div class="hero-container">
             <div class="hero-copy">
-                <p class="eyebrow">Event Management — Kerala</p>
+                <p class="eyebrow no-line">Event Management — Kerala</p>
                 <h1>Every occasion, <span class="italic text-brass">lit with intention.</span></h1>
                 <p class="lede">AATHMA Events & Caters plans and produces weddings, corporate gatherings, and milestone
                     celebrations across Kerala — decor, catering coordination, sound, and the hundred small decisions
